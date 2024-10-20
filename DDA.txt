@@ -1,0 +1,389 @@
+1.String Pattern matching by using Brute Force Algorithm.
+
+def brute_force(text,pattern):
+    n= len(text)
+    m= len(pattern)
+    for i in range(n-m+1):
+        if text[i:i + m] == pattern:
+            return i
+    return -1
+text = "Aditya Ramesh Maurya"
+pattern = "Adi"
+index = brute_force(text,pattern)
+if index != -1:
+    print(f"Pattern '{pattern}' found at index {index}")
+else:
+    print(f"Pattern '{pattern}' not found in the text")
+
+2. Factorial by using Recursive Function.
+
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return(n*factorial(n-1));
+n=int(input("Enter a number:"))
+factorial = factorial(n)
+print("Factorial of",n,"is",factorial)
+ 	
+3. ARRAYS
+
+def reverse_order(arr):
+    print("Array elements in reverse order:")
+    for i in range(len(arr)-1, -1, -1):
+        print(arr[i], end=" ")
+
+n = int(input("Enter size of an array: "))
+arr = []
+print("Enter elements in the array:")
+for i in range(n):
+    element = int(input())
+    arr.append(element)
+
+reverse_order(arr)
+
+3B. sum of all elements in array
+
+def find_sum(arr):
+    total = sum(arr)
+    return total
+arr = [12,20,9,5]
+result = find_sum(arr)
+print("The sum of all element of an array is:",result)
+
+3C. Decending order of sorted array and merge array
+
+def merge_sort(arr1,arr2):
+    merge = arr1 + arr2
+    merge.sort(reverse=True)
+    return merge
+arr1 = [1,2,3]
+arr2 = [4,5,6]
+result = merge_sort(arr1,arr2)
+print("Descending order of sorted array and merge array is:",result)
+
+4. singly linked list
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, data):
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+        else:
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = new_node
+
+    def delete(self, data):
+        if not self.head:
+            return
+        if self.head.data == data:
+            self.head = self.head.next
+            return
+        current = self.head
+        while current.next:
+            if current.next.data == data:
+                current.next = current.next.next
+                return
+            current = current.next
+
+    def display(self):
+        current = self.head
+        while current:
+            print(current.data, end=" -> ")
+            current = current.next
+        print("None")
+
+    def traverse(self):
+        current = self.head
+        while current:
+            print(current.data, end=" -> ")
+            current = current.next
+        print("None")
+
+# Create a linked list and perform operations
+ll = LinkedList()
+ll.insert(10)
+ll.insert(20)
+ll.insert(30)
+ll.insert(40)
+
+print("Linked List:")
+ll.display()
+
+print("Traversing the Linked List:")
+ll.traverse()
+
+ll.delete(20)
+print("Linked List after deletion:")
+ll.display()
+
+5.Doubly linked list
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.prev = None
+        self.next = None
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+    def insert(self, data):
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+        else:
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = new_node
+            new_node.prev = current
+    def delete(self, data):
+        current = self.head
+        while current:
+            if current.data == data:
+                if current.prev:
+                    current.prev.next = current.next
+                else:
+                    self.head = current.next
+                if current.next:
+                    current.next.prev = current.prev
+                return
+            current = current.next
+    def display(self):
+        current = self.head
+        while current:
+            print(current.data, end=" <-> ")
+            current = current.next
+        print("None")
+    def traverse(self, forward=True):
+        current = self.head if forward else None
+        while current:
+            print(current.data, end=" <-> ")
+            current = current.next if forward else current.prev
+        print("None")
+doubly_linked_list = DoublyLinkedList()
+doubly_linked_list.insert(10)
+doubly_linked_list.insert(20)
+doubly_linked_list.insert(30)
+doubly_linked_list.insert(40)
+print("Doubly Linked List:")
+doubly_linked_list.display()
+print("Traversing the Doubly Linked List forward:")
+doubly_linked_list.traverse()
+print("Traversing the Doubly Linked List backward:")
+doubly_linked_list.traverse(forward=False)
+doubly_linked_list.delete(20)
+print("Doubly Linked List after deletion:")
+doubly_linked_list.display()
+
+6.BUBBLE SORT.
+
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(n - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+numbers = [12,20,5,11,23,2]
+print("Original list:", numbers)
+
+bubble_sort(numbers)
+print("Sorted list:", numbers)
+
+7. Stacks
+
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        if not self.is_empty():
+            return self.items.pop()
+        else:
+            return "Stack is empty"
+
+    def peek(self):
+        if not self.is_empty():
+            return self.items[-1]
+        else:
+            return "Stack is empty"
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+    def size(self):
+        return len(self.items)
+
+    def display(self):
+        print("Stack:", self.items)
+
+    def traverse(self):
+        print("Stack traversal:")
+        for item in reversed(self.items):
+            print(item)
+
+    def delete(self):
+        if not self.is_empty():
+            self.pop()  # Using pop() to remove the top element
+            print("Top element deleted.")
+        else:
+            print("Stack is empty. Nothing to delete.")
+
+# Creating a stack 
+stack = Stack()
+
+# Inserting elements 
+stack.push(10)
+stack.push(20)
+stack.push(30)
+
+# Displaying the stack
+stack.display()
+
+# Traversing the stack 
+stack.traverse()
+
+# Deleting the top element
+stack.delete()
+
+# Displaying the final stack
+stack.display()
+
+8. Queue
+
+class Queue:
+    def __init__(self):
+        self.items = [] 
+    def enqueue(self, item):
+        self.items.append(item)        
+    def dequeue(self):
+        if not self.is_empty():
+            return self.items.pop(0)
+        else:
+            return "Queue is empty" 
+    def is_empty(self): 
+            return len(self.items) == 0 
+    def display(self): 
+        print("Queue:", self.items) 
+    def traverse(self): 
+        print("Queue traversal:")
+        for item in self.items: 
+            print(item)
+# Creating a queue
+queue = Queue() 
+# Inserting elements
+queue.enqueue(10)
+queue.enqueue(20)
+queue.enqueue(30) 
+# Displaying the queue
+queue.display() 
+# Traversing the queue
+queue.traverse() 
+# Deleting an element
+print("Dequeued:", queue.dequeue()) 
+# Displaying the final queue
+queue.display()  
+
+9. Binary tree
+
+    def insert(self, value):
+        if value < self.value:
+            if self.left is None:
+                self.left = Tree(value)
+            else:
+                self.left.insert(value)
+        else:
+            if self.right is None:
+                self.right = Tree(value)
+            else:
+                self.right.insert(value)
+# Creating the root of the tree
+root = Tree(6)
+# Inserting elements into the tree
+root.insert(4)
+root.insert(2)
+root.insert(5)
+root.insert(9)
+root.insert(8)
+root.insert(10)
+# Displaying in-order traversal
+print("Inorder traversal after insertion: ", end='')
+root.inorder(root)
+
+10. Binary tree
+
+class Tree:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+    def inorder(self, root):
+        if root is None:
+            return
+        self.inorder(root.left)
+        print(root.value, end=' ')
+        self.inorder(root.right)
+    def insert(self, value):
+        if value < self.value:
+            if self.left is None:
+                self.left = Tree(value)
+            else:
+                self.left.insert(value)
+        else:
+            if self.right is None:
+                self.right = Tree(value)
+            else:
+                self.right.insert(value)
+    def delete(self, value):
+        if value < self.value:
+            if self.left:
+                self.left = self.left.delete(value)
+        elif value > self.value:
+            if self.right:
+                self.right = self.right.delete(value)
+        else:
+            if self.left is None:
+                return self.right
+            elif self.right is None:
+                return self.left
+            min_larger_node = self.right
+            while min_larger_node.left is not None:
+                min_larger_node = min_larger_node.left
+            self.value = min_larger_node.value
+            self.right = self.right.delete(min_larger_node.value)
+        return self
+
+# Example usage
+root = Tree(4)
+root.insert(12)
+root.insert(20)
+root.insert(5)
+root.insert(9)
+
+print("Inorder traversal after insertion: ", end='')
+root.inorder(root)
+
+root = root.delete(2)
+print('\n2 is deleted: ', end='')
+root.inorder(root)
+
+root = root.delete(0)
+print('\n4 is deleted: ', end='')
+root.inorder(root)
+root = root.delete(3)
+print('\n6 is deleted: ', end='')
+root.inorder(root)
+
